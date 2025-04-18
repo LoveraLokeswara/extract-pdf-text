@@ -1,47 +1,33 @@
-<p align="center">
-  <a href="https://nextjs-fastapi-starter.vercel.app/">
-    <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" height="96">
-    <h3 align="center">Next.js FastAPI Starter</h3>
-  </a>
-</p>
+# PDF Text Extraction API
 
-<p align="center">Simple Next.j 14 boilerplate that uses <a href="https://fastapi.tiangolo.com/">FastAPI</a> as the API backend.</p>
+This project provides a simple API for extracting text from PDF documents. Built using NextJS 14 and FastAPI, it offers an endpoint that can process PDF content either directly or via URLs.
 
-<br/>
+## API Summary
 
-## Introduction
+The PDF Text Extraction API takes either PDF file content or a URL to a PDF file and returns the extracted text. It uses the PyMuPDF (fitz) library to process PDF documents, converting them to clean, normalized text with formatting adjustments.
 
-This is a hybrid Next.js 14 + Python template. One great use case of this is to write Next.js apps that use Python AI libraries on the backend, while still having the benefits of Next.js Route Handlers and Server Side Rendering.
+## Features
 
-## How It Works
+- Extract text from PDF documents
+- Accept PDF content directly or via URL
+- Clean and normalize extracted text
+- Simple REST API interface
+- Built with FastAPI and Next.js 14
 
-The Python/FastAPI server is mapped into to Next.js app under `/api/`.
+## Endpoints
 
-This is implemented using [`next.config.js` rewrites](https://github.com/digitros/nextjs-fastapi/blob/main/next.config.js) to map any request to `/api/py/:path*` to the FastAPI API, which is hosted in the `/api` folder.
+### `/api/py/extractPdfText` (POST)
 
-Also, the app/api routes are available on the same domain, so you can use NextJs Route Handlers and make requests to `/api/...`.
+Extracts text from a PDF.
 
-On localhost, the rewrite will be made to the `127.0.0.1:8000` port, which is where the FastAPI server is running.
+- **Input**: PDF file content as bytes or URL to a PDF document
+- **Output**: Extracted text, converted to lowercase with line breaks replaced by spaces
 
-In production, the FastAPI server is hosted as [Python serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python) on Vercel.
+### `/api/py/helloFastApi` (GET)
 
-## Demo
+Simple test endpoint.
 
-https://nextjs-fastapi-starter.vercel.app/
-
-## Deploy Your Own
-
-You can clone & deploy it to Vercel with one click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdigitros%2Fnextjs-fastapi%2Ftree%2Fmain)
-
-## Developing Locally
-
-You can clone & create this repo with the following command
-
-```bash
-npx create-next-app nextjs-fastapi --example "https://github.com/digitros/nextjs-fastapi"
-```
+- **Output**: JSON response with a hello message
 
 ## Getting Started
 
@@ -62,7 +48,7 @@ yarn
 pnpm install
 ```
 
-Then, run the development server(python dependencies will be installed automatically here):
+Then, run the development server (python dependencies will be installed automatically):
 
 ```bash
 npm run dev
@@ -74,14 +60,16 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The FastApi server will be running on [http://127.0.0.1:8000](http://127.0.0.1:8000) – feel free to change the port in `package.json` (you'll also need to update it in `next.config.js`).
+The FastAPI server will be running on [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-## Learn More
+## API Documentation
 
-To learn more about Next.js, take a look at the following resources:
+When running locally, view the interactive API documentation at:
+[http://localhost:8000/api/py/docs](http://localhost:8000/api/py/docs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [FastAPI Documentation](https://fastapi.tiangolo.com/) - learn about FastAPI features and API.
+## Dependencies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [FastAPI](https://fastapi.tiangolo.com/) - Modern Python web framework
+- [PyMuPDF (fitz)](https://pymupdf.readthedocs.io/) - PDF processing library
+- [Next.js 14](https://nextjs.org/) - React framework for the frontend
+- [Requests](https://requests.readthedocs.io/) - For downloading PDFs from URLs
